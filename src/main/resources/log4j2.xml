@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<Configuration>
-	<Appenders>
-		<Console name="console" target="SYSTEM_OUT">
+<configuration status="OFF">
+	<appenders>
+		<Console name="AnsiConsole" target="SYSTEM_OUT">
 			<PatternLayout>
-			<Pattern>%d %highlight{%p} %style{%logger}{bright,cyan} %C{1.} %msg%n</Pattern>
+				<!-- [%marker][%markerSimpleName] -->
+				<Pattern>[%highlight{%5p}]%d [%style{%c{1.}}{bright,yellow}][%M:%L] %n %m %n</Pattern>
+				<!-- <Pattern>%highlight{%d [%t] %-5level: %msg%n%throwable}{STYLE=Logback}</Pattern> -->
+				<disableAnsi>false</disableAnsi>
 			</PatternLayout>
 		</Console>
-	</Appenders>
-	<Loggers>
-		<Logger name="com.jckang.ex00" level="DEBUG"
+	</appenders>
+	<loggers>
+		<root level="DEBUG">
+			<appender-ref ref="AnsiConsole" />
+		</root>
+		<logger name="com.jckang.ex00" level="DEBUG" additivity="false">
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="org.springframework" level="DEBUG"
 			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="org.springframework" level="DEBUG"
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="org.springframework.beans" level="DEBUG"
 			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="org.springframework.beans" level="DEBUG"
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="org.springframework.core" level="DEBUG"
 			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="org.springframework.core" level="DEBUG"
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="org.springframework.context" level="DEBUG"
 			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="org.springframework.context" level="DEBUG"
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="org.springframework.web" level="DEBUG"
 			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="org.springframework.web" level="DEBUG"
-			additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="java.sql" level="DEBUG" additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
-			<AppenderRef ref="console" />
-		</Logger>
-		<Logger name="jdbc.resultsettable" additivity="false">
-			<level value="info" />
-			<appender-ref ref="console-log4jdbc" />
-		</Logger>
-	</Loggers>
-</Configuration>
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="java.sql" level="DEBUG" additivity="false">
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+		<logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
+			<AppenderRef ref="AnsiConsole" />
+		</logger>
+	</loggers>
+</configuration>
